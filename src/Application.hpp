@@ -16,7 +16,11 @@
 #include <GL/glew.h>
 
 #include "typedefs.hpp"
+#include "config.hpp"
 
+/**
+ * @brief Internally used enum.
+ */
 enum AppResult
 {
     SUCCESS = 0,
@@ -26,15 +30,25 @@ enum AppResult
 #define APP_SUCCESS 0
 #define APP_FAILED 1
 
+/**
+ * @brief Main application class.
+ * This class is used as an general entry point.
+ */
 class Application
 {
   public:
-    Application(std::string name, ui32 height, ui32 width);
+    Application(const app_config&);
     AppResult loop();
 
+    void clearScreen() const;
+    void poolForEvents();
+
+    /* SDL window context */
     SDL_Window* m_window;
     bool m_isInitialized;
     SDL_GLContext m_glContext;
+
+    bool closing;
 };
 
 #endif // __APPLICATION_HPP__

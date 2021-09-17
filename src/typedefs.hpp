@@ -25,4 +25,48 @@ typedef int64_t i64;
 typedef float f32;
 typedef double f64;
 
+struct Vertex2D
+{
+    Vertex2D() {}
+    Vertex2D(f32 x, f32 y)
+    {
+        this->x = x;
+        this->y = y;
+    }
+
+    Vertex2D operator=(const Vertex2D& other)
+    {
+        Vertex2D result;
+        result.x = other.x;
+        result.y = other.y;
+        return result;
+    }
+
+    f32 x, y;
+};
+
+struct Vertex3D
+{
+    Vertex3D() {}
+    Vertex3D(f32 x, f32 y, f32 z)
+    {
+        this->x = x;
+        this->y = y;
+        this->z = z;
+    }
+
+    Vertex3D operator=(const Vertex3D& other)
+    {
+        Vertex3D result;
+        result.x = other.x;
+        result.y = other.y;
+        result.z = other.z;
+        return result;
+    }
+
+    f32 x, y, z;
+};
+
+typedef Vertex2D Vector2D;
+
 #endif // __TYPEDEFS_HPP__
