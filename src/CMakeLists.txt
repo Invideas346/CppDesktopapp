@@ -7,6 +7,7 @@ set(SOURCE_FILES
     Render/QuadRenderer.cpp
     Render/MasterRenderer.cpp
     Render/ButtonRenderer.cpp
+    Render/TextRenderer.cpp
     Components/ComponentManager.cpp
     GL/glFunctions.cpp
     Components/Button.cpp

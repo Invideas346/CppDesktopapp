@@ -10,13 +10,6 @@
 #ifndef __TEXTRENDERER_HPP__
 #define __TEXTRENDERER_HPP__
 
-class TextRenderer
-{
-  public:
-    TextRenderer();
-    ~TextRenderer();
-};
-
 #include <map>
 #include <glm/glm.hpp>
 
@@ -34,15 +27,16 @@ struct Character
 // A renderer class for rendering text displayed by a font loaded using the
 // FreeType library. A single font is loaded, processed into a list of Character
 // items for later rendering.
-class TextRenderer
+/*class TextRenderer
 {
   public:
     // holds a list of pre-compiled Characters
     std::map<char, Character> Characters;
     // shader used for text rendering
-    Shader TextShader;
+    Shader* TextShader;
     // constructor
     TextRenderer(unsigned int width, unsigned int height);
+    ~TextRenderer();
     // pre-compiles a list of characters from the given font
     void Load(std::string font, unsigned int fontSize);
     // renders a string of text using the precompiled list of characters
@@ -52,6 +46,6 @@ class TextRenderer
   private:
     // render state
     unsigned int VAO, VBO;
-};
+};*/
 
 #endif // __TEXTRENDERER_HPP__
