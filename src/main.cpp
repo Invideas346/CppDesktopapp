@@ -52,14 +52,20 @@ void load_config(app_config& config)
 int main(int argc, char const* argv[])
 {
     plog::init(plog::debug, "Log.txt");
+
+    // Load the config file.
     app_config config;
     load_config(config);
 
     Application* app = new Application(config);
     ui32 result = app->loop();
+
+    // Did the app terminate correctly?
     if (result == APP_FAILED)
     {
         PLOGD << "App Failed to start";
     }
+    // Did the app terminate correctly?
+
     return result;
 }

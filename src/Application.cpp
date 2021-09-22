@@ -99,7 +99,8 @@ void Application::poolForEvents(std::vector<Button*> btns)
     }
 }
 
-void testBtnClick() { std::cout << "123" << std::endl; }
+void testBtnClick1() { std::cout << "1" << std::endl; }
+void testBtnClick2() { std::cout << "2" << std::endl; }
 
 AppResult Application::loop()
 {
@@ -112,14 +113,18 @@ AppResult Application::loop()
 
     MasterRenderer masterRenderer;
     std::vector<Button*> buttons;
-    buttons.push_back(new Button({-0.5f, -0.5f}, 1.0f, 1.0f, testBtnClick));
+    buttons.push_back(new Button({-0.75f, -0.5f}, 1.0f, 0.5f, testBtnClick1));
+    buttons.push_back(new Button({0.25f, -0.5f}, 1.0f, 0.5f, testBtnClick2));
 
     // Main program loop.
     while (!this->closing)
     {
         this->clearScreen();
         this->poolForEvents(buttons);
-        masterRenderer.renderButton(buttons[0]);
+        for (ui32 i = 0; i < buttons.size(); i++)
+        {
+            masterRenderer.renderButton(buttons[i]);
+        }
         masterRenderer.finishRendering();
         SDL_GL_SwapWindow(this->m_window);
     }

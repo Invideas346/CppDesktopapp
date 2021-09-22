@@ -18,10 +18,13 @@ MasterRenderer::~MasterRenderer() {}
 
 void MasterRenderer::finishRendering()
 {
+    // Iterate over every button passed in to be rendered.
     for (size_t i = 0; i < this->m_buttons.size(); i++)
     {
         this->m_buttonRenderer.render(this->m_buttons[i]);
     }
+
+    // Clear the list of to be rendered buttons.
     this->clearStack();
 }
 

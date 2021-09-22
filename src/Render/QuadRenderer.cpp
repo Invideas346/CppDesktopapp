@@ -17,26 +17,27 @@ QuadRenderer::QuadRenderer(/* args */)
 {
     // For some weird reason relative paths don't seem to work.
     this->shader = new Shader(
-        "E:/Wolfgang_Aigner/Documents/5BHELS/Projekt/Code/build/bin/shader/basic_vert.vert",
-        "E:/Wolfgang_Aigner/Documents/5BHELS/Projekt/Code/build/bin/shader/basic_frag.frag");
-
-    // Rectangle vertecies.
-    const Vertex2D vertecies[] = {
-        {-0.75f, -0.75f}, {-0.75f, 0.75f}, {0.75f, 0.75f}, {0.75f, -0.75f}};
+        "E:/Wolfgang_Aigner/Documents/5BHELS/Projekt/Code/build/bin/shader/button_vert.vert",
+        "E:/Wolfgang_Aigner/Documents/5BHELS/Projekt/Code/build/bin/shader/button_frag.frag");
 
     // Rectangle indices.
     const ui32 indices[] = {0, 1, 2, 2, 3, 0};
 
+    // Generate a VAO.
     glGenVertexArrays(1, &this->vaoID);
     glBindVertexArray(this->vaoID);
 
+    // Generate the vertex buffer.
     glGenBuffers(1, &this->vertexBufferID);
     glBindBuffer(GL_ARRAY_BUFFER, this->vertexBufferID);
-    glBufferData(GL_ARRAY_BUFFER, 4 * sizeof(Vertex2D), vertecies, GL_DYNAMIC_DRAW);
+
+    // Set the vertex array attribute pointer
+    // (needed for the vertex shader to interprate the data in the VRAM).
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex2D),
                           (void*) offsetof(Vertex2D, x));
 
+    // Set the index buffer and populate it.
     glGenBuffers(1, &this->indexBufferID);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, this->indexBufferID);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6 * sizeof(ui32), indices, GL_STATIC_DRAW);
@@ -44,7 +45,10 @@ QuadRenderer::QuadRenderer(/* args */)
 
 QuadRenderer::~QuadRenderer()
 {
+    // Delete the shader from the GPU.
     this->shader->delete_shader();
+
+    // Finally free the memory from the heap.
     delete this->shader;
     GL::deleteBuffer(&this->vertexBufferID);
     GL::deleteBuffer(&this->indexBufferID);
@@ -53,19 +57,25 @@ QuadRenderer::~QuadRenderer()
 
 void QuadRenderer::free()
 {
+    // Delete the shader from the GPU.
     this->shader->delete_shader();
+
+    // Finally free the memory from the heap.
     delete this->shader;
     GL::deleteBuffer(&this->vertexBufferID);
     GL::deleteBuffer(&this->indexBufferID);
     GL::deleteVAO(&this->vaoID);
 }
 
-// TODO: Instead of allocatiog the vertecies in the vram these could just get passed in by a uniform to the GPU.
-void QuadRenderer::render(Vector2D* vec, Vertex2D* vertecies) const
+void QuadRenderer::render(Vertex2D* vertecies) const
 {
+    // Bind the ButtonShader to be used.
     this->shader->bind();
-    ui32 offsetLocation = this->shader->getUniformLocation("in_offset");
+
+    // Not really clean.
     glBufferData(GL_ARRAY_BUFFER, 4 * sizeof(Vertex2D), vertecies, GL_DYNAMIC_DRAW);
+
+    // Bind the VAO of the quadRenderer.
     GL::bindVAO(this->vaoID);
     GL::drawElements(6);
 }

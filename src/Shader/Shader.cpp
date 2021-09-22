@@ -55,18 +55,25 @@ std::string Shader::parse(const char* filename)
 {
     FILE* file;
     file = fopen(filename, "rb");
+
+    // Was the file found?
     if (file == NULL)
     {
         DEBUG_LOG("FILE: " << filename << " Filename not found");
         return NULL;
     }
+    // Was the file found?
 
     std::string contents;
+
+    // How big the file to be read?
     fseek(file, 0, SEEK_END);
     size_t filesize = ftell(file);
     rewind(file);
-    contents.resize(filesize);
+    // How big the file to be read?
 
+    // Resize the std::string to the size of the to be read file.
+    contents.resize(filesize);
     fread(&contents[0], 1, filesize, file);
     fclose(file);
 

@@ -16,11 +16,11 @@
 class QuadRenderer
 {
   public:
-    QuadRenderer(/* args */);
+    QuadRenderer();
     ~QuadRenderer();
 
     void free();
-    void render(Vector2D* vec, Vertex2D* vertecies) const;
+    void render(Vertex2D* vertecies) const;
 
     Shader* shader;
     ui32 vaoID;

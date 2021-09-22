@@ -30,11 +30,15 @@ void ButtonRenderer::render(Button* button)
 
         Not sure if offset should get applied only in the shader or here.
     */
+
+    // Calculate the vertecies of the to be rendered button.
     Vertex2D vertecies[4];
     vertecies[0] = {button->m_position.x, button->m_position.y};
     vertecies[1] = {button->m_position.x, button->m_position.y + button->m_height};
     vertecies[2] = {button->m_position.x + button->m_width,
                     button->m_position.y + button->m_height};
     vertecies[3] = {button->m_position.x + button->m_width, button->m_position.y};
-    m_quadRenderer.render(&button->m_position, vertecies);
+
+    // Pass the vertecies to the QuadRenderer.
+    m_quadRenderer.render(vertecies);
 }
