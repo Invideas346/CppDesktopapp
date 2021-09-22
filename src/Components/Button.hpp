@@ -15,6 +15,9 @@
 class Button
 {
   public:
+    ui32 m_id;
+    static ui32 current_id;
+
     Button();
     Button(const Vector2D& position, const f32& height, const f32& width, void (*onClick)(void));
 

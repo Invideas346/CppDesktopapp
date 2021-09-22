@@ -11,7 +11,7 @@
 
 #include "Application.hpp"
 #include "Render/MasterRenderer.hpp"
-#include "Components/Button.hpp"
+#include "Components/Components.hpp"
 
 Application::Application(const app_config& config) : m_isInitialized(false), closing(false)
 {

@@ -10,10 +10,13 @@
 #include <iostream>
 
 #include "Button.hpp"
+
+ui32 Button::current_id = 0;
+
 Button::Button() : m_isInitialized(false) {}
 
 Button::Button(const Vector2D& position, const f32& height, const f32& width, void (*onClick)(void))
-    : m_isInitialized(false)
+    : m_isInitialized(false), m_id(current_id++)
 {
     this->m_position = position;
     this->m_height = height;

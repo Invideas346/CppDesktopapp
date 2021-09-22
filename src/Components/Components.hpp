@@ -10,6 +10,7 @@
 #ifndef __COMPONENTS_HPP__
 #define __COMPONENTS_HPP__
 
+#include "ComponentManager.hpp"
 #include "Button.hpp"
 
 #endif // __COMPONENTS_HPP__

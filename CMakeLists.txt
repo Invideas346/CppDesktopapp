@@ -24,21 +24,25 @@ endif()
 #Add the external libaries.
 add_subdirectory(external/glew/build/cmake external/glew)
 add_subdirectory(external/plog external/plog)
+add_subdirectory(external/glm external/glm)
 
 target_include_directories(${PROJECT_NAME}
     PUBLIC external/glew/include
     PUBLIC external/sdl/include
     PUBLIC external/plog/include
+    PUBLIC external/glm
 )
 
 target_link_directories(${PROJECT_NAME}
     PUBLIC external/glew/src
     PUBLIC external/sdl
+    PUBLIC external/glm
 )
 
 target_link_libraries(${PROJECT_NAME}
     PRIVATE glew
     PRIVATE SDL2
+    PRIVATE glm_shared
 )
 
 

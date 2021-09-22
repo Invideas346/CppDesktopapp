@@ -34,4 +34,16 @@
 build
 *.txt
 
+*.html
+*.png
+*.js
+*.jpg
+*.css
+*.date
+*.natvis
+*.jpeg
+*.yml
+*.doxy
+*.pdf
+
 .vscode
