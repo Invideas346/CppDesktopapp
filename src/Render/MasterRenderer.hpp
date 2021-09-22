@@ -12,7 +12,9 @@
 
 #include <vector>
 
+#include "../Components/Components.hpp"
 #include "QuadRenderer.hpp"
+#include "ButtonRenderer.hpp"
 
 class MasterRenderer
 {
@@ -21,10 +23,12 @@ class MasterRenderer
     ~MasterRenderer();
 
     void finishRendering();
-    void addRec(Vector2D* vec);
+    void renderButton(Button* button);
 
-    QuadRenderer quadRenderer;
-    std::vector<Vector2D> vecs;
+    void clearStack();
+
+    ButtonRenderer m_buttonRenderer;
+    std::vector<Button*> m_buttons;
 };
 
 #endif // __MASTERRENDERER_HPP__

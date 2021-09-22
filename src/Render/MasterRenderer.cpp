@@ -7,6 +7,8 @@
  * Copyright (c) 2021 Wolfgang Aigner
  */
 
+#include <iostream>
+
 #include "MasterRenderer.hpp"
 #include "../GL/glFunctions.hpp"
 
@@ -16,10 +18,13 @@ MasterRenderer::~MasterRenderer() {}
 
 void MasterRenderer::finishRendering()
 {
-    for (size_t i = 0; i < this->vecs.size(); i++)
+    for (size_t i = 0; i < this->m_buttons.size(); i++)
     {
-        this->quadRenderer.render(&this->vecs[i]);
+        this->m_buttonRenderer.render(this->m_buttons[i]);
     }
+    this->clearStack();
 }
 
-void MasterRenderer::addRec(Vector2D* vec) { this->vecs.push_back(*vec); }
+void MasterRenderer::renderButton(Button* button) { this->m_buttons.push_back(button); }
+
+void MasterRenderer::clearStack() { this->m_buttons.clear(); }

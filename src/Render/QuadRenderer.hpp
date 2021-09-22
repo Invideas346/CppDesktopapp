@@ -20,7 +20,7 @@ class QuadRenderer
     ~QuadRenderer();
 
     void free();
-    void render(Vector2D* vec) const;
+    void render(Vector2D* vec, Vertex2D* vertecies) const;
 
     Shader* shader;
     ui32 vaoID;

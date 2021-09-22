@@ -34,12 +34,11 @@ struct Vertex2D
         this->y = y;
     }
 
-    Vertex2D operator=(const Vertex2D& other)
+    Vertex2D& operator=(const Vertex2D& other)
     {
-        Vertex2D result;
-        result.x = other.x;
-        result.y = other.y;
-        return result;
+        this->x = other.x;
+        this->y = other.y;
+        return *this;
     }
 
     f32 x, y;
@@ -55,13 +54,12 @@ struct Vertex3D
         this->z = z;
     }
 
-    Vertex3D operator=(const Vertex3D& other)
+    Vertex3D& operator=(const Vertex3D& other)
     {
-        Vertex3D result;
-        result.x = other.x;
-        result.y = other.y;
-        result.z = other.z;
-        return result;
+        this->x = other.x;
+        this->y = other.y;
+        this->z = other.z;
+        return *this;
     }
 
     f32 x, y, z;

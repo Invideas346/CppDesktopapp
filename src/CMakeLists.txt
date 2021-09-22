@@ -6,6 +6,7 @@ set(SOURCE_FILES
     Shader/Shader.cpp
     Render/QuadRenderer.cpp
     Render/MasterRenderer.cpp
+    Render/ButtonRenderer.cpp
     GL/glFunctions.cpp
     Components/Button.cpp
 )

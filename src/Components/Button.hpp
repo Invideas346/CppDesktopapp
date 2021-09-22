@@ -16,12 +16,12 @@ class Button
 {
   public:
     Button();
-    Button(const Vector2D& position, const ui32& height, const ui32& width);
+    Button(const Vector2D& position, const f32& height, const f32& width, void (*onClick)(void));
 
     void setOnClick(void (*onClick)(void));
 
     Vector2D m_position;
-    ui32 m_height, m_width;
+    f32 m_height, m_width;
     void (*m_onClick)(void);
 
     bool m_isInitialized;

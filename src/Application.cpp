@@ -20,6 +20,8 @@ Application::Application(const app_config& config) : m_isInitialized(false), clo
     this->m_window = SDL_CreateWindow(
         config.name.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, config.window_width,
         config.window_height, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
+    this->m_windowHeight = config.window_height;
+    this->m_windowWidth = config.window_width;
     this->m_glContext = SDL_GL_CreateContext(this->m_window);
 
     // Can glew get initalized?
@@ -48,7 +50,21 @@ void Application::clearScreen() const
     glClear(GL_COLOR_BUFFER_BIT);
 }
 
-void Application::poolForEvents()
+void buttonIntersect(f32 mouse_xpos, f32 mouse_ypos, std::vector<Button*> buttons)
+{
+    for (ui32 i = 0; i < buttons.size(); i++)
+    {
+        if (buttons[i]->m_position.x <= mouse_xpos &&
+            buttons[i]->m_position.x + buttons[i]->m_width >= mouse_xpos &&
+            buttons[i]->m_position.y <= mouse_ypos &&
+            buttons[i]->m_position.y + buttons[i]->m_height >= mouse_ypos)
+        {
+            buttons[i]->m_onClick();
+        }
+    }
+}
+
+void Application::poolForEvents(std::vector<Button*> btns)
 {
     SDL_Event e;
     SDL_PollEvent(&e);
@@ -66,16 +82,24 @@ void Application::poolForEvents()
         if (e.window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
         {
             glViewport(0, 0, e.window.data1, e.window.data2);
+            SDL_GetWindowSize(this->m_window, &this->m_windowWidth, &this->m_windowHeight);
         }
         break;
     }
 
-    // Poll for mouse events.
     i32 mouse_xpos, mouse_ypos;
     ui32 mouse_curser = SDL_GetMouseState(&mouse_xpos, &mouse_ypos);
+
+    if ((mouse_curser & SDL_BUTTON_LMASK) != 0)
+    {
+        f32 rel_mouse_xpos = (((f32) mouse_xpos / this->m_windowWidth) * 2) - 1.0f;
+        f32 rel_mouse_ypos = -((((f32) mouse_ypos / this->m_windowHeight) * 2) - 1.0f);
+
+        buttonIntersect(rel_mouse_xpos, rel_mouse_ypos, btns);
+    }
 }
 
-void testBtnClick() { std::cout << "Hallo" << std::endl; }
+void testBtnClick() { std::cout << "123" << std::endl; }
 
 AppResult Application::loop()
 {
@@ -87,19 +111,15 @@ AppResult Application::loop()
     // Was the initialization successful?
 
     MasterRenderer masterRenderer;
-    Vector2D vec = {0.3f, 0.0f};
-    Vector2D btnpos = {0.0f, 0.0f};
-
-    Button btn(btnpos, 200, 400);
-    btn.setOnClick(testBtnClick);
-    btn.m_onClick();
+    std::vector<Button*> buttons;
+    buttons.push_back(new Button({-0.5f, -0.5f}, 1.0f, 1.0f, testBtnClick));
 
     // Main program loop.
     while (!this->closing)
     {
         this->clearScreen();
-        this->poolForEvents();
-        masterRenderer.addRec(&vec);
+        this->poolForEvents(buttons);
+        masterRenderer.renderButton(buttons[0]);
         masterRenderer.finishRendering();
         SDL_GL_SwapWindow(this->m_window);
     }

@@ -16,6 +16,7 @@
 #include <GL/glew.h>
 
 #include "typedefs.hpp"
+#include "Components/Button.hpp"
 #include "config.hpp"
 
 /**
@@ -41,7 +42,7 @@ class Application
     AppResult loop();
 
     void clearScreen() const;
-    void poolForEvents();
+    void poolForEvents(std::vector<Button*> btns);
 
     /* SDL window context */
     SDL_Window* m_window;
@@ -49,6 +50,7 @@ class Application
     SDL_GLContext m_glContext;
 
     bool closing;
+    i32 m_windowHeight, m_windowWidth;
 };
 
 #endif // __APPLICATION_HPP__
