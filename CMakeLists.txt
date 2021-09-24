@@ -25,6 +25,7 @@ endif()
 add_subdirectory(external/glew/build/cmake external/glew)
 add_subdirectory(external/plog external/plog)
 add_subdirectory(external/glm external/glm)
+add_subdirectory(external/sdl2)
 #add_subdirectory(external/freetype external/freetype)
 
 target_include_directories(${PROJECT_NAME}
@@ -32,6 +33,7 @@ target_include_directories(${PROJECT_NAME}
     PUBLIC external/sdl/include
     PUBLIC external/plog/include
     PUBLIC external/glm
+    PUBLIC external/stb
     #PUBLIC external/freetype/include
 )
 

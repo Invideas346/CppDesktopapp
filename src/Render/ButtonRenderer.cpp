@@ -10,10 +10,58 @@
 #include <iostream>
 
 #include "ButtonRenderer.hpp"
+#include "../GL/glFunctions.hpp"
 
-ButtonRenderer::ButtonRenderer(/* args */) {}
+ButtonRenderer::ButtonRenderer()
+{
+    this->m_buttonShader = new ButtonShader();
 
-ButtonRenderer::~ButtonRenderer() {}
+    // Rectangle indices.
+    const ui32 indices[] = {0, 1, 2, 2, 3, 0};
+
+    // Generate a VAO.
+    glGenVertexArrays(1, &this->m_vaoID);
+    glBindVertexArray(this->m_vaoID);
+
+    // Generate the vertex buffer.
+    glGenBuffers(1, &this->m_vertexBufferID);
+    glBindBuffer(GL_ARRAY_BUFFER, this->m_vertexBufferID);
+
+    // Set the vertex array attribute pointer
+    // (needed for the vertex shader to interprate the data in the VRAM).
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex2D),
+                          (void*) offsetof(Vertex2D, x));
+
+    // Set the index buffer and populate it.
+    glGenBuffers(1, &this->m_indexBufferID);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, this->m_indexBufferID);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6 * sizeof(ui32), indices, GL_STATIC_DRAW);
+}
+
+ButtonRenderer::~ButtonRenderer()
+{
+    // Delete the shader from the GPU.
+    this->m_buttonShader->delete_shader();
+
+    // Finally free the memory from the heap.
+    delete this->m_buttonShader;
+    GL::deleteBuffer(&this->m_vertexBufferID);
+    GL::deleteBuffer(&this->m_indexBufferID);
+    GL::deleteVAO(&this->m_vaoID);
+}
+
+void ButtonRenderer::free()
+{
+    // Delete the shader from the GPU.
+    this->m_buttonShader->delete_shader();
+
+    // Finally free the memory from the heap.
+    delete this->m_buttonShader;
+    GL::deleteBuffer(&this->m_vertexBufferID);
+    GL::deleteBuffer(&this->m_indexBufferID);
+    GL::deleteVAO(&this->m_vaoID);
+}
 
 void ButtonRenderer::render(Button* button)
 {
@@ -39,6 +87,13 @@ void ButtonRenderer::render(Button* button)
                     button->m_position.y + button->m_height};
     vertecies[3] = {button->m_position.x + button->m_width, button->m_position.y};
 
-    // Pass the vertecies to the QuadRenderer.
-    m_quadRenderer.render(vertecies);
+    // Bind the ButtonShader to be used.
+    this->m_buttonShader->bind();
+
+    // Not really clean.
+    glBufferData(GL_ARRAY_BUFFER, 4 * sizeof(Vertex2D), vertecies, GL_DYNAMIC_DRAW);
+
+    // Bind the VAO of the quadRenderer.
+    GL::bindVAO(this->m_vaoID);
+    GL::drawElements(6);
 }

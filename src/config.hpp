@@ -9,10 +9,10 @@
 #ifndef __CONFIG_HPP__
 #define __CONFIG_HPP__
 
-#include "typedefs.hpp"
 #include <string>
 #include <fstream>
 #include <iostream>
+#include "typedefs.hpp"
 
 struct app_config
 {

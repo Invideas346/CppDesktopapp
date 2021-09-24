@@ -11,6 +11,7 @@
 #define __BUTTONRENDERER_HPP__
 
 #include "QuadRenderer.hpp"
+#include "../Shader/ButtonShader.hpp"
 #include "../Components/Button.hpp"
 
 class ButtonRenderer
@@ -19,8 +20,12 @@ class ButtonRenderer
     ButtonRenderer();
     ~ButtonRenderer();
 
+    void free();
     void render(Button* button);
 
+    ui32 m_vaoID, m_vertexBufferID, m_indexBufferID;
+
+    ButtonShader* m_buttonShader;
     QuadRenderer m_quadRenderer;
 };
 

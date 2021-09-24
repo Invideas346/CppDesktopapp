@@ -3,11 +3,14 @@ cmake_minimum_required(VERSION 3.21.0)
 set(SOURCE_FILES
     main.cpp
     Application.cpp
+    font.cpp
     Shader/Shader.cpp
+    Shader/ButtonShader.cpp
     Render/QuadRenderer.cpp
     Render/MasterRenderer.cpp
     Render/ButtonRenderer.cpp
     Render/TextRenderer.cpp
+    Render/ButtonRenderer.cpp
     Components/ComponentManager.cpp
     GL/glFunctions.cpp
     Components/Button.cpp
