@@ -10,6 +10,7 @@
 #ifndef __BUTTON_HPP__
 #define __BUTTON_HPP__
 
+#include <string>
 #include "../typedefs.hpp"
 
 class Button
@@ -19,11 +20,13 @@ class Button
     static ui32 current_id;
 
     Button();
-    Button(const Vector2D& position, const f32& height, const f32& width, void (*onClick)(void));
+    Button(const Vector2D& position, const f32& height, const f32& width, void (*onClick)(void),
+           const std::string& label);
 
     void setOnClick(void (*onClick)(void));
 
     Vector2D m_position;
+    std::string label;
     f32 m_height, m_width;
     void (*m_onClick)(void);
 

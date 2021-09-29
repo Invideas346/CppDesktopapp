@@ -13,6 +13,7 @@
 #include "QuadRenderer.hpp"
 #include "../Shader/ButtonShader.hpp"
 #include "../Components/Button.hpp"
+#include "FontRenderer.hpp"
 
 class ButtonRenderer
 {
@@ -26,7 +27,7 @@ class ButtonRenderer
     ui32 m_vaoID, m_vertexBufferID, m_indexBufferID;
 
     ButtonShader* m_buttonShader;
-    QuadRenderer m_quadRenderer;
+    FontRenderer* m_fontRenderer;
 };
 
 #endif // __BUTTONRENDERER_HPP__

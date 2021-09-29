@@ -18,6 +18,16 @@ void GL::drawElements(ui32 indeciesCount)
 
 void GL::bindVAO(ui32 vaoID) { glBindVertexArray(vaoID); }
 
+void GL::unbindVAO() { glBindVertexArray(0); }
+
+void GL::bindVertexBuffer(ui32 bufferID) { glBindBuffer(GL_ARRAY_BUFFER, bufferID); }
+
+void GL::unbindVertexBuffer() { glBindBuffer(GL_ARRAY_BUFFER, 0); }
+
+void GL::bindIndexBuffer(ui32 bufferID) { glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, bufferID); }
+
+void GL::unbindIndexBuffer() { glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0); }
+
 void GL::deleteBuffer(ui32* bufferID) { glDeleteBuffers(1, bufferID); }
 
 void GL::deleteVAO(ui32* vaoID) { glDeleteVertexArrays(1, vaoID); }

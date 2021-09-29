@@ -13,6 +13,9 @@
 #define GLEW_STATIC
 #include <GL/glew.h>
 
+#define STB_TRUETYPE_IMPLEMENTATION
+#include <stb_truetype.h>
+
 #include <plog/Log.h>
 #include <plog/Initializers/RollingFileInitializer.h>
 

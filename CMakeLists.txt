@@ -26,7 +26,6 @@ add_subdirectory(external/glew/build/cmake external/glew)
 add_subdirectory(external/plog external/plog)
 add_subdirectory(external/glm external/glm)
 add_subdirectory(external/sdl2)
-#add_subdirectory(external/freetype external/freetype)
 
 target_include_directories(${PROJECT_NAME}
     PUBLIC external/glew/include
@@ -34,21 +33,18 @@ target_include_directories(${PROJECT_NAME}
     PUBLIC external/plog/include
     PUBLIC external/glm
     PUBLIC external/stb
-    #PUBLIC external/freetype/include
 )
 
 target_link_directories(${PROJECT_NAME}
     PUBLIC external/glew/src
     PUBLIC external/sdl
     PUBLIC external/glm
-    #PUBLIC external/freetype
 )
 
 target_link_libraries(${PROJECT_NAME}
     PRIVATE glew
     PRIVATE SDL2
     PRIVATE glm_shared
-    #PRIVATE freetype
 )
 
 

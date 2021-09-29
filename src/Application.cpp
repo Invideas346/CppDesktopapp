@@ -8,14 +8,19 @@
  */
 
 #include <plog/Log.h>
+#include <glm/glm.hpp>
+#include <glm/ext/matrix_transform.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
 #include "Application.hpp"
 #include "Render/MasterRenderer.hpp"
 #include "Components/Components.hpp"
+#include "macros.hpp"
 
 Application::Application(const app_config& config) : m_isInitialized(false), closing(false)
 {
     SDL_Init(SDL_INIT_EVERYTHING);
+
     SDL_GL_SetSwapInterval(0);
     this->m_window = SDL_CreateWindow(
         config.name.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, config.window_width,
@@ -101,6 +106,7 @@ void Application::poolForEvents(std::vector<Button*> btns)
 
 void testBtnClick1() { std::cout << "1" << std::endl; }
 void testBtnClick2() { std::cout << "2" << std::endl; }
+void testBtnClick3() { std::cout << "3" << std::endl; }
 
 AppResult Application::loop()
 {
@@ -113,8 +119,9 @@ AppResult Application::loop()
 
     MasterRenderer masterRenderer;
     std::vector<Button*> buttons;
-    buttons.push_back(new Button({-0.75f, -0.5f}, 1.0f, 0.5f, testBtnClick1));
-    buttons.push_back(new Button({0.25f, -0.5f}, 1.0f, 0.5f, testBtnClick2));
+    buttons.push_back(new Button({-0.75f, -0.5f}, 0.5f, 0.25f, testBtnClick1, "Button 1"));
+    buttons.push_back(new Button({0.25f, -0.5f}, 0.5f, 0.25f, testBtnClick2, "Button 2"));
+    buttons.push_back(new Button({-0.25f, -0.5f}, 0.5f, 0.25f, testBtnClick3, "Button 3"));
 
     // Main program loop.
     while (!this->closing)

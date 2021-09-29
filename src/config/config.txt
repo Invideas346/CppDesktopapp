@@ -1,2 +1,2 @@
-windowsize 1200 600
+windowsize 1280 800
 fullscreen 0

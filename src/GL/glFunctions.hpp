@@ -18,6 +18,16 @@ void drawElements(ui32 indeciesCount);
 
 void bindVAO(ui32 vaoID);
 
+void unbindVAO();
+
+void bindVertexBuffer(ui32 bufferID);
+
+void unbindVertexBuffer();
+
+void bindIndexBuffer(ui32 bufferID);
+
+void unbindIndexBuffer();
+
 void deleteBuffer(ui32* bufferID);
 
 void deleteVAO(ui32* vaoID);

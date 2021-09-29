@@ -14,6 +14,9 @@
 
 ButtonRenderer::ButtonRenderer()
 {
+    this->m_fontRenderer = new FontRenderer(
+        "E:/Wolfgang_Aigner/Documents/5BHELS/Projekt/Code/build/bin/fonts/OpenSans-Regular.ttf");
+
     this->m_buttonShader = new ButtonShader();
 
     // Rectangle indices.
@@ -37,6 +40,7 @@ ButtonRenderer::ButtonRenderer()
     glGenBuffers(1, &this->m_indexBufferID);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, this->m_indexBufferID);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6 * sizeof(ui32), indices, GL_STATIC_DRAW);
+    glBindVertexArray(0);
 }
 
 ButtonRenderer::~ButtonRenderer()
@@ -90,10 +94,15 @@ void ButtonRenderer::render(Button* button)
     // Bind the ButtonShader to be used.
     this->m_buttonShader->bind();
 
-    // Not really clean.
-    glBufferData(GL_ARRAY_BUFFER, 4 * sizeof(Vertex2D), vertecies, GL_DYNAMIC_DRAW);
-
     // Bind the VAO of the quadRenderer.
     GL::bindVAO(this->m_vaoID);
+    GL::bindVertexBuffer(this->m_vertexBufferID);
+    // Not really clean.
+    glBufferData(GL_ARRAY_BUFFER, 4 * sizeof(Vertex2D), vertecies, GL_DYNAMIC_DRAW);
     GL::drawElements(6);
+    GL::unbindVertexBuffer();
+    GL::unbindVAO();
+    m_fontRenderer->render(((button->m_position.x + 1.0f) + (button->m_width / 2)) * 640.0f,
+                           (1.0f - (button->m_position.y + button->m_height / 2)) * 400.0f,
+                           button->label.c_str());
 }
