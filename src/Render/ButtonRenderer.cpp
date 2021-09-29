@@ -15,7 +15,7 @@
 ButtonRenderer::ButtonRenderer()
 {
     this->m_fontRenderer = new FontRenderer(
-        "E:/Wolfgang_Aigner/Documents/5BHELS/Projekt/Code/build/bin/fonts/OpenSans-Regular.ttf");
+        "./fonts/OpenSans-Regular.ttf");
 
     this->m_buttonShader = new ButtonShader();
 
@@ -103,6 +103,6 @@ void ButtonRenderer::render(Button* button)
     GL::unbindVertexBuffer();
     GL::unbindVAO();
     m_fontRenderer->render(((button->m_position.x + 1.0f) + (button->m_width / 2)) * 640.0f,
-                           (1.0f - (button->m_position.y + button->m_height / 2)) * 400.0f,
-                           button->label.c_str());
+                            (1.0f - (button->m_position.y + button->m_height / 2)) * 400.0f,
+                            button->label.c_str());
 }

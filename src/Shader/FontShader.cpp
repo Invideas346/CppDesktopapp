@@ -10,8 +10,8 @@
 #include "FontShader.hpp"
 
 FontShader::FontShader()
-    : Shader("E:/Wolfgang_Aigner/Documents/5BHELS/Projekt/Code/build/bin/shader/font_vert.vert",
-             "E:/Wolfgang_Aigner/Documents/5BHELS/Projekt/Code/build/bin/shader/font_frag.frag")
+    : Shader("./shader/font_vert.vert",
+             "./shader/font_frag.frag")
 {
 }
 

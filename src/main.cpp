@@ -24,7 +24,7 @@
 void load_config(app_config& config)
 {
     std::ifstream configFile(
-        "E:/Wolfgang_Aigner/Documents/5BHELS/Projekt/Code/build/bin/config/config.txt");
+        "./config/config.txt");
     std::string key;
 
     if (configFile.is_open())

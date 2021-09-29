@@ -19,10 +19,10 @@ set(SOURCE_FILES
 )
 
 # Shader
-configure_file("shader_prgrams/button_frag.frag" ${CMAKE_BINARY_DIR}/bin/shader/button_frag.frag COPYONLY)
-configure_file("shader_prgrams/button_vert.vert" ${CMAKE_BINARY_DIR}/bin/shader/button_vert.vert COPYONLY)
-configure_file("shader_prgrams/font_frag.frag" ${CMAKE_BINARY_DIR}/bin/shader/font_frag.frag COPYONLY)
-configure_file("shader_prgrams/font_vert.vert" ${CMAKE_BINARY_DIR}/bin/shader/font_vert.vert COPYONLY)
+configure_file("shader_programs/button_frag.frag" ${CMAKE_BINARY_DIR}/bin/shader/button_frag.frag COPYONLY)
+configure_file("shader_programs/button_vert.vert" ${CMAKE_BINARY_DIR}/bin/shader/button_vert.vert COPYONLY)
+configure_file("shader_programs/font_frag.frag" ${CMAKE_BINARY_DIR}/bin/shader/font_frag.frag COPYONLY)
+configure_file("shader_programs/font_vert.vert" ${CMAKE_BINARY_DIR}/bin/shader/font_vert.vert COPYONLY)
 
 #Fonts
 configure_file("fonts/OpenSans-Regular.ttf" ${CMAKE_BINARY_DIR}/bin/fonts/OpenSans-Regular.ttf COPYONLY)

@@ -119,9 +119,9 @@ AppResult Application::loop()
 
     MasterRenderer masterRenderer;
     std::vector<Button*> buttons;
-    buttons.push_back(new Button({-0.75f, -0.5f}, 0.5f, 0.25f, testBtnClick1, "Button 1"));
-    buttons.push_back(new Button({0.25f, -0.5f}, 0.5f, 0.25f, testBtnClick2, "Button 2"));
-    buttons.push_back(new Button({-0.25f, -0.5f}, 0.5f, 0.25f, testBtnClick3, "Button 3"));
+    buttons.push_back(new Button({-0.9f, -0.5f}, 0.5f, 0.5f, testBtnClick1, "Button 1"));
+    buttons.push_back(new Button({-0.25f, -0.5f}, 0.5f, 0.5f, testBtnClick2, "Button 2"));
+    buttons.push_back(new Button({0.4f, -0.5f}, 0.5f, 0.5f, testBtnClick3, "Button 3"));
 
     // Main program loop.
     while (!this->closing)

@@ -9,8 +9,8 @@
 #include "ButtonShader.hpp"
 
 ButtonShader::ButtonShader()
-    : Shader("E:/Wolfgang_Aigner/Documents/5BHELS/Projekt/Code/build/bin/shader/button_vert.vert",
-             "E:/Wolfgang_Aigner/Documents/5BHELS/Projekt/Code/build/bin/shader/button_frag.frag")
+    : Shader("./shader/button_vert.vert",
+             "./shader/button_frag.frag")
 {
 }
 
