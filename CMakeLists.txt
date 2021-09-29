@@ -29,7 +29,7 @@ add_subdirectory(external/sdl2)
 
 target_include_directories(${PROJECT_NAME}
     PUBLIC external/glew/include
-    PUBLIC external/sdl/include
+    PUBLIC external/sdl2
     PUBLIC external/plog/include
     PUBLIC external/glm
     PUBLIC external/stb
@@ -37,7 +37,7 @@ target_include_directories(${PROJECT_NAME}
 
 target_link_directories(${PROJECT_NAME}
     PUBLIC external/glew/src
-    PUBLIC external/sdl
+    PUBLIC external/sdl2
     PUBLIC external/glm
 )
 
